@@ -52,7 +52,7 @@ Point a = new Point();
 
 for (int j = 0; j < 1500; j += 2) {
     for (float i = 0; i < 2 * PI; i += 2 * PI / 10000) {
-        fill(255 * (1 + cos(10 * i + 0.16 * j)), 255 * (1 + cos(10 * i + 0.10 * j)), 255 * (1 + cos(10 * i + 0.13 * j)), 255);
+        fill(150 + 100 * cos(10 * i + 0.05 * j), 100 + 100 * cos(10 * i + 0.10 * j), 100 + 100 * cos(10 * i + 0.15 * j), 255);
         a.set_Polar(j * ((1 + 0 * cos(55 * i)) * 0.01 + 0.5), i);
         //b.print();
         circle(a.x, a.y, 1);
