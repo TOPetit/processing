@@ -42,15 +42,15 @@ class Point {
     
 }
 
-size(1000, 1000);
-int n = 1000;
+size(200, 200);
+int n = 200;
 translate(n / 2, n / 2);
 
 noStroke();
 
 Point a = new Point();
 
-for (int j = 0; j < 1500; j += 2) {
+for (int j = 0; j < 2*n; j += 2) {
     for (float i = 0; i < 2 * PI; i += 2 * PI / 10000) {
         fill(150 + 100 * cos(10 * i + 0.05 * j), 100 + 100 * cos(10 * i + 0.10 * j), 100 + 100 * cos(10 * i + 0.15 * j), 255);
         a.set_Polar(j * ((1 + 0 * cos(55 * i)) * 0.01 + 0.5), i);
