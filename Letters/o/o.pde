@@ -7,7 +7,6 @@ void setup() {
     background(255);
     noFill();
     noLoop();
-    
 }
 
 void draw() {
