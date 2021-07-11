@@ -1,4 +1,4 @@
-Boolean lettre_o(float x, float y) {
+Boolean letter_o(float x, float y) {
     return inEllipse(x, y, n / 2, n / 2, n / 8, n / 5) || !inEllipse(x, y, n / 2, n / 2, n / 5, n / 4);
 }
 
