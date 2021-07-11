@@ -23,7 +23,7 @@ void draw() {
         float a = random(n);
         float b = random(n);
         float radius = n / 50;
-        if (lettre_o(a, b)) {
+        if (letter_o(a, b)) {
             circle(a, b, radius);
         }
     }
@@ -31,7 +31,7 @@ void draw() {
     save("o.png");
 }
 
-Boolean lettre_o(float x, float y) {
+Boolean letter_o(float x, float y) {
     return inEllipse(x, y, n / 2, n / 2, n / 8, n / 5) || !inEllipse(x, y, n / 2, n / 2, n / 5, n / 4);
 }
 
