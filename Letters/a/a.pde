@@ -37,11 +37,9 @@ Boolean letter_a(float x, float y) {
         || inRectangle(x, y, n / 2 - 0.1 * n, n / 2 + 0.05 * n, 0.2 * n, 0.05 * n);
     
     Boolean notA = inParallelogram(x, y, n / 2 - 0.3 * n, n / 2 + 0.2 * n, n / 2 - 0.2 * n, n / 2 + 0.2 * n, n / 2 - 0.25 * n,n / 2 - 0.4 * n);
-    notA = true;
     
-    if (brut) {
-        return !notA;
-    }
+    
+    
     return brut;
 }
 
