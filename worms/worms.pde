@@ -1,38 +1,37 @@
 
-float n = 500.;
+int nbWorms = 25;
+float n = 1000.;
 Boolean colorCircle = true;
-Worm[] worms = new Worm[4];
+Worm[][] worms = new Worm[nbWorms][nbWorms];
 
 void setup() {
-    size(500, 500);
+    size(1000, 1000);
     background(255);
     noFill();
     noStroke();
-    worms[0] = new Worm(n / 2 + 1, n / 2 + 1, true);
-    worms[1] = new Worm(n / 2 + 1, n / 2 - 1, true);
-    worms[2] = new Worm(n / 2 - 1, n / 2 + 1, true);
-    worms[3] = new Worm(n / 2 - 1, n / 2 - 1, true);
+    for (int i = 0; i < nbWorms; i++) {
+        for (int j = 0; j < nbWorms; j++) {
+            worms[i][j] = new Worm(n / (nbWorms * 2) + (n / nbWorms) * i, n / (nbWorms * 2) + (n / nbWorms) * j, 0);
+        }
+    }
 }
 
 void draw() {
     
-    for (int j = 0; j < 5000;j++) {
-        for (int i = 0; i < 4; i++) {
-            if (worms[i].isArrived()) {
-                worms[i].restart();
-                print("Arrived.\n");
-            }
-            else{
-                float x = worms[i].getX();
-                float y = worms[i].getY();
-                if (worms[i].getCol()) {
-                    fill(0);
+    for (int k = 0; k < 10; k++) {
+        for (int i = 0; i < nbWorms; i++) {
+            for (int j = 0; j < nbWorms; j++) {
+                if (worms[i][j].isArrived()) {
+                    worms[i][j].restart();
+                    print("Arrived.\n");
                 }
-                else {
-                    fill(255);
+                else{
+                    float x = worms[i][j].getX();
+                    float y = worms[i][j].getY();
+                    fill(worms[i][j].getCol());
+                    circle(x, y, 1);
+                    worms[i][j].move();
                 }
-                circle(x, y, 1);
-                worms[i].move();
             }
         }
     }
@@ -42,9 +41,9 @@ class Worm {
     
     float x,y;
     float x_start, y_start;
-    Boolean col;
+    int col;
     
-    public Worm(float x_start, float y_start, Boolean col) {
+    public Worm(float x_start, float y_start, int col) {
         this.x_start = x_start;
         this.y_start = y_start;
         this.col = col;
@@ -53,7 +52,14 @@ class Worm {
     void restart() {
         this.x = x_start;
         this.y = y_start;
-        this.col = !this.col;
+        
+        if (this.col == 0) {
+            this.col = 255;
+        }
+        else {
+            this.col = 0;
+        }
+        
     }
     
     void setPos(float x, float y) {
@@ -69,24 +75,27 @@ class Worm {
         return this.y;
     }
     
-    Boolean getCol() {
+    int getCol() {
         return this.col;
     }
     
     Boolean isArrived() {
-        return !inSquare(this.x, this.y, 0., 0., n);
+        return !inCircle(this.x, this.y, this.x_start, this.y_start, 50);
     }
     
     void move() {
-        
-        float dir_x = this.x - n / 2;
-        float dir_y = this.y - n / 2;
-        
-        if (random(0., 1.) < 0.5) {
-            this.setPos(this.x + sign(dir_x), this.y);
+        float rand = random(0., 1.);
+        if (rand < 0.25) {
+            this.setPos(this.x + 1, this.y);
         }
-        else{
-            this.setPos(this.x, this.y + sign(dir_y));
+        else if (rand < 0.5) {
+            this.setPos(this.x - 1, this.y);
+        }
+        else if (rand < 0.75) {
+            this.setPos(this.x, this.y + 1);
+        }
+        else {
+            this.setPos(this.x, this.y - 1);
         }
         
         
