@@ -1,11 +1,11 @@
 
 int nbWorms = 25;
-float n = 1000.;
+float n = 500.;
 Boolean colorCircle = true;
 Worm[][] worms = new Worm[nbWorms][nbWorms];
 
 void setup() {
-    size(1000, 1000);
+    size(500, 500);
     background(255);
     noFill();
     noStroke();
@@ -18,7 +18,7 @@ void setup() {
 
 void draw() {
     
-    for (int k = 0; k < 10; k++) {
+    for (int k = 0; k < 50; k++) {
         for (int i = 0; i < nbWorms; i++) {
             for (int j = 0; j < nbWorms; j++) {
                 if (worms[i][j].isArrived()) {

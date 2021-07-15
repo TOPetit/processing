@@ -9,7 +9,7 @@ void setup() {
 }
 
 void draw() {
-    for (int k = 0; k < 50; k++) {
+    for (int k = 0; k < 1; k++) {
         
         float x1 = random(n);
         float y1 = random(n);
