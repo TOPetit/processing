@@ -42,8 +42,8 @@ class Point {
     
 }
 
-size(1080, 1080);
-int n = 1080;
+size(200, 200);
+int n = 200;
 translate(n / 2, n / 2);
 
 noStroke();
@@ -59,4 +59,4 @@ for (int j = 0; j < 2 * n; j += 2) {
     }
 }
 System.out.printf("Done\n");
-save("spiral.png");
+save("/out/spiral.png");
