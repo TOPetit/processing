@@ -7,40 +7,29 @@ void draw() {
     
     float a = frameCount / 25.;
     
-    rotateX(PI / 4);
+    //rotateX(PI / 4);
+    rotateY(PI / 2);
     
     background(0);
-    translate(width / 2, height / 2, -150);
+    translate(0., width / 2, width / 2);
     
-    strokeWeight(5);
+    strokeWeight(4);
     
-    translate(0, 0, 100 * sin(a));
-    stroke(255, 0, 0);
-    ellipse(0, 0, 240, 240);
-    translate(0, 0, -100 * sin(a));
+    rotateX(frameCount / 100.);
     
-    translate(0, 0, 120 * sin(a));
-    stroke(0, 255, 0);
-    ellipse(0, 0 , 200, 200);
-    translate(0, 0, -120 * sin(a));
-    
-    translate(0, 0, 140 * sin(a));
-    stroke(0, 0, 255);
-    ellipse(0, 0, 160, 160);
-    translate(0, 0, -140 * sin(a));
-    
-    translate(0, 0, 160 * sin(a));
-    stroke(255, 0, 0);
-    ellipse(0, 0, 120, 120);
-    translate(0, 0, -160 * sin(a));
-    
-    translate(0, 0, 180 * sin(a));
-    stroke(0, 255, 0);
-    ellipse(0, 0 , 80, 80);
-    translate(0, 0, -180 * sin(a));
-    
-    translate(0, 0, 200 * sin(a));
-    stroke(0, 0, 255);
-    ellipse(0, 0, 40, 40);
-    translate(0, 0, -200 * sin(a));
+    for (int i = 0; i < 60; i++) {
+        rotateX(frameCount / 1000.);
+        translate(0, 0, 0.1 * i * sin(a));
+        if (i % 3 == 0) {
+            stroke(255, 0, 0);
+        }
+        else if (i % 3 == 1) {
+            stroke(0, 255, 0);
+        }
+        else {
+            stroke(0, 0, 255);
+        }
+        ellipse(0, 0, i, 10 * i);
+        translate(0, 0, -0.1 * i * sin(a));
+    }
 }
