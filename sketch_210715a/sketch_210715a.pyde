@@ -1,7 +1,3 @@
-from java.lang import System
-System.setProperty("jogl.disable.openglcore", "false")
-
-
 def setup():
     size(1080, 1080, P3D)
     background(0)
