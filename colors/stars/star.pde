@@ -1,6 +1,7 @@
 public class Star {
     
     private float x, y; // Position
+    private float noise_x, noise_y; // Noise around the position
     private float x_init, y_init; // Initial position
     private int r, g, b; // RGB Color
     private int radius; // Radius
@@ -19,14 +20,21 @@ public class Star {
     }
     
     public void moveToward(float x_dest, float y_dest) {
+        //System.out.printf("x_dest = " + x_dest + " y_dest = " + y_dest + "\n");
+        //System.out.printf("mouseX = " + mouseY + " mouseY = " + mouseY + "\n");
         float x_dir = x_dest - this.x;
         float y_dir = y_dest - this.y;
-        this.x += this.speed * x_dir;
-        this.y += this.speed * y_dir;
+        this.x += this.speed * this.radius * x_dir;
+        this.y += this.speed * this.radius * y_dir;
     }
     
     public void draw() {
         circle(this.x, this.y, this.radius);
+    }
+    
+    public void draw_noisy() {
+        applyNoise();
+        circle(this.x + this.noise_x, this.y + this.noise_y, this.radius);
     }
     
     public float getXInit() {
@@ -38,11 +46,23 @@ public class Star {
     }
     
     public float getX() {
-        return this.x;
+        applyNoise();
+        return this.x + this.noise_x;
     }
     
     public float getY() {
-        return this.y;
+        applyNoise();
+        return this.y + this.noise_y;
     }
     
+    private void applyNoise() {
+        if (!mousePressed) {
+            this.noise_x = noise((this.x + frameCount) / 100.);
+            this.noise_y = noise((this.y + frameCount) / 100.);
+        }
+        else {
+            this.noise_x = 0;
+            this.noise_y = 0;
+        }
+    }
 }
