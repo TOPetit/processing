@@ -37,4 +37,12 @@ public class Star {
         return this.y_init;
     }
     
+    public float getX() {
+        return this.x;
+    }
+    
+    public float getY() {
+        return this.y;
+    }
+    
 }

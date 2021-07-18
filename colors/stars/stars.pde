@@ -15,7 +15,12 @@ void draw() {
     
     if (mousePressed) {
         for (int i = 0; i < nbStar; i++) {
-            stars[i].moveToward(mouseX, mouseY);
+            if (inCircle(stars[i].getX(), stars[i].getY(), mouseX, mouseY, 100)) {
+                stars[i].moveToward(mouseX, mouseY);
+            }
+            else {
+                stars[i].moveToward(stars[i].getXInit(), stars[i].getYInit());
+            }
         }
     }
     else {
@@ -29,3 +34,10 @@ void draw() {
     }
 }
 
+Boolean inEllipse(float x, float y, float center_x, float center_y, float radius_x, float radius_y) {
+    return sq(x - center_x) / sq(radius_x) + sq(y - center_y) / sq(radius_y) < 1;
+}
+
+Boolean inCircle(float x, float y, float center_x, float center_y, float radius) {
+    return inEllipse(x, y, center_x, center_y, radius, radius);
+}
