@@ -1,18 +1,18 @@
-int n = 1000;
-int div = 50;
+int n = 500;
+int div = 250;
 Grid grid = new Grid(div);
 
 
 void setup() {
-    size(1000,1000,P3D);
+    size(500,500,P3D);
     noStroke();
     grid.initRandom(0.3);
     
 }
 
 void draw() {
-    background(200);
-    //delay(1000);
+    background(250);
+    //delay(100);
     grid.plot();
     grid.update();
 }
@@ -73,16 +73,18 @@ class Grid {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 for (int k = 0; k < this.size; k++) {
-                    state = this.cells[i][j][k].getState();
-                    if (state) {
-                        fill(0);
+                    if (sq(i * cellWidth - width / 2) + sq(j * cellHeight - height / 2) + sq(k * cellDepth - width / 2) < sq(50)) {
+                        state = this.cells[i][j][k].getState();
+                        if (state) {
+                            fill(0);
+                        }
+                        else{
+                            fill(100);
+                        }
+                        translate(i * cellWidth, j * cellHeight, k * cellDepth);
+                        box(cellWidth);
+                        translate( -i * cellWidth, -j * cellHeight, -k * cellDepth);
                     }
-                    else {
-                        fill(200);
-                    }
-                    translate(i * cellWidth, j * cellHeight, k * cellDepth);
-                    box(cellWidth);
-                    translate( -i * cellWidth, -j * cellHeight, -k * cellDepth);
                 }
             }
         }
