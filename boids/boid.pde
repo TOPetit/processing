@@ -11,22 +11,26 @@ public class Boid {
         this.vy = vy;
     }
     
-    private updateNorm() {
+    private void updateNorm() {
         this.norm = sqrt(sq(vx) + sq(vy));
     }
     
-    public draw(float scale) {
-        fill(255, 0, 0);
+    public void draw(float scale) {
+        fill(173, 213, 230);
         updateNorm();
-        norm_vx = vx / this.norm;
-        norm_vy = vy / this.norm;
-        triangle(this.x + scale * norm_vx, this.y + scale * norm_vy, this.x + scale / 4 * ( -norm_vy), this.y + scale / 2 * norm_vx, this.x + scale / 4 * norm_vy, this.y + scale / 2 * ( -norm_vx));
+        float norm_vx = vx / this.norm;
+        float norm_vy = vy / this.norm;
+        triangle(this.x + scale * norm_vx, this.y + scale * norm_vy, this.x + scale / 4 * ( -norm_vy), this.y + scale / 4 * norm_vx, this.x + scale / 4 * norm_vy, this.y + scale / 4 * ( -norm_vx));
         fill(0);
     }
     
-    public nextPos() {
+    public void nextPos() {
         this.x += this.vx;
         this.y += this.vy;
+        this.x = (this.x < 0) ? this.x + width : this.x;
+        this.x = (this.x > width) ? this.x - width : this.x;
+        this.y = (this.y < 0) ? this.y + height : this.y;
+        this.y = (this.y > height) ? this.y - height : this.y;
     }
     
 }
