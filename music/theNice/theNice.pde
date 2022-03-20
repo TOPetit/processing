@@ -4,7 +4,7 @@ Bar[] bars = new Bar[nbBars];
 void setup() {
     size(1024, 1024);
     for (int i = 0; i < nbBars; i++) {
-        bars[i] = new Bar(i * width / nbBars - width / 2 + 35, random(40, 60), random(30, 500), new Color(ColorType.PASTEL));
+        bars[i] = new Bar(i * width / nbBars - width / 2 + 35, random(40, 60), random(30, 500), new Color(ColorType.VIBRANT));
     }
 }
 
@@ -80,6 +80,18 @@ public class Color {
                 this.r = 0;
                 this.g = 0;
                 this.b = 0;
+                break;
+            case VIBRANT:
+                this.r = random(100, 255);
+                this.g = (this.r + random(50, 200)) % 255;
+                float d = abs(this.g - this.r);
+                if (d < 125) {
+                    this.b = (max(this.g, this.r) + random((255 - d) / 2 - 40,(255 - d) / 2 + 40)) % 255;
+                }
+                else {
+                    this.b = (min(this.g, this.r) + random((255 - d) / 2 - 40,(255 - d) / 2 + 40)) % 255;
+                }
+                
                 break;
             default:
             // error
